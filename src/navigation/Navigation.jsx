@@ -1,10 +1,10 @@
 import { createBottomTabNavigator, BottomTabBar } from '@react-navigation/bottom-tabs';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
-import Game from '../components/Game';
 import Scoreboard from '../components/Scoreboard';
 import Header from '../components/Header';
 import Rules from '../components/Rules';
+import Gameboard from '../components/Gameboard';
 const Tab = createBottomTabNavigator();
 const options = {
     headerTitleAlign: 'center',
@@ -49,7 +49,7 @@ const Navigation = ({ name }) => {
                 }} />
             <Tab.Screen
                 name='Game'
-                component={Game}
+                component={Gameboard}
                 initialParams={{ name: name }}
                 options={{
                     ...options,
