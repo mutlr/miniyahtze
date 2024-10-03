@@ -5,128 +5,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SCOREBOARD_KEY } from "../utilities/constants";
 import Button from "./Button";
 import { useIsFocused } from '@react-navigation/native';
-const games = [
-    {
-        points: 50,
-        date: new Date(),
-        id: 1
-    },
-    {
-        points: 60,
-        date: new Date(),
-        id: 2
-    },
-    {
-        points: 40,
-        date: new Date(),
-        id: 3
-    },
-    {
-        points: 700,
-        date: new Date(),
-        id: 4
-    },
-    {
-        points: 90,
-        date: new Date(),
-        id: 5
-    },
-    {
-        points: 120,
-        date: new Date(),
-        id: 6
-    },
-    {
-        points: 30,
-        date: new Date(),
-        id: 7
-    },
-    {
-        points: 450,
-        date: new Date(),
-        id: 8
-    },
-    {
-        points: 320,
-        date: new Date(),
-        id: 9
-    },
-    {
-        points: 110,
-        date: new Date(),
-        id: 10
-    },
-    {
-        points: 150,
-        date: new Date(),
-        id: 11
-    },
-    {
-        points: 200,
-        date: new Date(),
-        id: 12
-    },
-    {
-        points: 250,
-        date: new Date(),
-        id: 13
-    },
-    {
-        points: 300,
-        date: new Date(),
-        id: 14
-    },
-    {
-        points: 500,
-        date: new Date(),
-        id: 15
-    },
-    {
-        points: 400,
-        date: new Date(),
-        id: 16
-    },
-    {
-        points: 275,
-        date: new Date(),
-        id: 17
-    },
-    {
-        points: 600,
-        date: new Date(),
-        id: 18
-    },
-    {
-        points: 750,
-        date: new Date(),
-        id: 19
-    },
-    {
-        points: 65,
-        date: new Date(),
-        id: 20
-    },
-    {
-        points: 85,
-        date: new Date(),
-        id: 21
-    },
-    {
-        points: 95,
-        date: new Date(),
-        id: 22
-    },
-    {
-        points: 170,
-        date: new Date(),
-        id: 23
-    },
-    {
-        points: 220,
-        date: new Date(),
-        id: 24
-    }
-];
 
 const formatDate = (date) => {
     const tempDate = new Date(date)
@@ -137,10 +15,10 @@ const formatDate = (date) => {
     return `${day}.${month}.${year}`;
 };
 const Scoreboard = ({ route }) => {
-    const [scoreboard, setScoreboard] = useState(games)
+    const [scoreboard, setScoreboard] = useState([])
     const isFocused = useIsFocused();
     const name = route.params.name
-    /*useEffect(() => {
+    useEffect(() => {
         AsyncStorage.getItem(SCOREBOARD_KEY)
             .then(result => {
                 const res = JSON.parse(result)
@@ -149,7 +27,7 @@ const Scoreboard = ({ route }) => {
                 }
             })
             .catch(err => console.error(`Error from scoreboard ${err}`))
-    }, [isFocused])*/
+    }, [isFocused])
 
     const clearScoreboard = async () => {
         try {
