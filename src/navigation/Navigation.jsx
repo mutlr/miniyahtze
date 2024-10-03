@@ -21,7 +21,7 @@ const options = {
 }
 const Navigation = ({ name }) => {
     return (
-        <Tab.Navigator initialRouteName='Game'
+        <Tab.Navigator initialRouteName='Rules'
             screenOptions={{
                 header: () => (
                     <Header text='Mini-Yahtzee' />
