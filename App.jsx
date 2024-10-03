@@ -5,7 +5,7 @@ import Register from './src/components/Register';
 import { NavigationContainer } from '@react-navigation/native';
 import Navigation from './src/navigation/Navigation';
 export default function App() {
-  const [name, setName] = useState('null')
+  const [name, setName] = useState(null)
   return (
     <NavigationContainer>
       <StatusBar style="auto" />

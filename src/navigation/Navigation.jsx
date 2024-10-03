@@ -62,6 +62,7 @@ const Navigation = ({ name }) => {
                 }}
             />
             <Tab.Screen name='Scoreboard' component={Scoreboard}
+                initialParams={{ name: name }}
                 options={{
                     ...options,
                     title: "Scoreboard",
