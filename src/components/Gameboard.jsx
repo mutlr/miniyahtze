@@ -13,7 +13,7 @@ const Dice = ({ number, size = 40, onPress, active }) => {
             <MaterialCommunityIcons
                 name={`dice-${number}`}
                 size={size}
-                color={active ? 'blue' : 'black'} />
+                color={active ? '#3293a8' : 'black'} />
         </Pressable>
     )
 }
@@ -142,7 +142,7 @@ const Gameboard = ({ route }) => {
         <View style={styles.container}>
             <View style={[styles.container, styles.rollingDiceContainer]}>
                 {dices.length === 0 || gameOver ?
-                    <MaterialCommunityIcons name="dice-multiple" size={100} color="blue" /> :
+                    <MaterialCommunityIcons name="dice-multiple" size={100} color="#3293a8" /> :
                     <FlatList
                         data={dices}
                         horizontal={true}
@@ -177,7 +177,7 @@ const Gameboard = ({ route }) => {
                             return (
                                 <View style={{ alignItems: 'center' }}>
                                     <Text>{points}</Text>
-                                    <Dice number={diceValue} size={48} onPress={() => pickPoints(diceValue)} />
+                                    <Dice number={diceValue} size={48} onPress={() => pickPoints(diceValue)} active={points > 0} />
                                 </View>
                             )
                         }}

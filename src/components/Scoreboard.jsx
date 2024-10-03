@@ -26,8 +26,108 @@ const games = [
         date: new Date(),
         id: 4
     },
+    {
+        points: 90,
+        date: new Date(),
+        id: 5
+    },
+    {
+        points: 120,
+        date: new Date(),
+        id: 6
+    },
+    {
+        points: 30,
+        date: new Date(),
+        id: 7
+    },
+    {
+        points: 450,
+        date: new Date(),
+        id: 8
+    },
+    {
+        points: 320,
+        date: new Date(),
+        id: 9
+    },
+    {
+        points: 110,
+        date: new Date(),
+        id: 10
+    },
+    {
+        points: 150,
+        date: new Date(),
+        id: 11
+    },
+    {
+        points: 200,
+        date: new Date(),
+        id: 12
+    },
+    {
+        points: 250,
+        date: new Date(),
+        id: 13
+    },
+    {
+        points: 300,
+        date: new Date(),
+        id: 14
+    },
+    {
+        points: 500,
+        date: new Date(),
+        id: 15
+    },
+    {
+        points: 400,
+        date: new Date(),
+        id: 16
+    },
+    {
+        points: 275,
+        date: new Date(),
+        id: 17
+    },
+    {
+        points: 600,
+        date: new Date(),
+        id: 18
+    },
+    {
+        points: 750,
+        date: new Date(),
+        id: 19
+    },
+    {
+        points: 65,
+        date: new Date(),
+        id: 20
+    },
+    {
+        points: 85,
+        date: new Date(),
+        id: 21
+    },
+    {
+        points: 95,
+        date: new Date(),
+        id: 22
+    },
+    {
+        points: 170,
+        date: new Date(),
+        id: 23
+    },
+    {
+        points: 220,
+        date: new Date(),
+        id: 24
+    }
+];
 
-]
 const formatDate = (date) => {
     const tempDate = new Date(date)
     const day = String(tempDate.getDate()).padStart(2, '0');
@@ -37,19 +137,19 @@ const formatDate = (date) => {
     return `${day}.${month}.${year}`;
 };
 const Scoreboard = ({ route }) => {
-    const [scoreboard, setScoreboard] = useState([])
+    const [scoreboard, setScoreboard] = useState(games)
     const isFocused = useIsFocused();
     const name = route.params.name
-    useEffect(() => {
+    /*useEffect(() => {
         AsyncStorage.getItem(SCOREBOARD_KEY)
             .then(result => {
                 const res = JSON.parse(result)
                 if (res) {
-                    setScoreboard(res)
+                    setScoreboard(res.sort((a, b) => b.points - a.points));
                 }
             })
             .catch(err => console.error(`Error from scoreboard ${err}`))
-    }, [isFocused])
+    }, [isFocused])*/
 
     const clearScoreboard = async () => {
         try {
@@ -70,7 +170,7 @@ const Scoreboard = ({ route }) => {
                     data={scoreboard}
                     style={{ width: '100%', marginTop: 24 }}
                     keyExtractor={item => item.id}
-                    contentContainerStyle={{ gap: 16 }}
+                    contentContainerStyle={{ gap: 16, }}
                     renderItem={({ item, index }) => (
                         <View style={styles.scoreContainer}>
                             <Text style={styles.scoreText}>{index + 1}.   {name}</Text>
@@ -79,7 +179,7 @@ const Scoreboard = ({ route }) => {
                         </View>
                     )}
                 />}
-            {scoreboard.length !== 0 && <View style={{ marginTop: 32 }}>
+            {scoreboard.length !== 0 && <View style={{ marginTop: 30 }}>
                 <Button title='Clear scoreboard' color='red' onPress={clearScoreboard} />
             </View>}
         </View>
@@ -97,6 +197,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingLeft: 8,
         paddingRight: 8,
+        paddingBottom: 300,
     },
     icon: {
         marginTop: 32,
