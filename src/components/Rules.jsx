@@ -9,7 +9,7 @@ const Rules = ({ route, navigation }) => {
     }
     return (
         <View style={styles.container}>
-            <Ionicons name="information-circle" size={100} color="blue" />
+            <Ionicons name="information-circle" size={100} color="#3293a8" />
             <Text style={styles.header}>Rules of the Game</Text>
             <View style={styles.textContainer}>
                 <Text style={styles.text}>
