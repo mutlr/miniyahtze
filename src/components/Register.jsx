@@ -26,7 +26,6 @@ const Register = ({ setName }) => {
                 cursorColor={'black'}
             />
             <Button title="OK" onPress={onSubmit} />
-            <Header text='Author: Rojhat' />
         </View>
     )
 }

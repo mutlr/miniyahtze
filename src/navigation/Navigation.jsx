@@ -27,14 +27,7 @@ const Navigation = ({ name }) => {
                     <Header text='Mini-Yahtzee' />
                 ),
 
-            }}
-            tabBar={(props) => (
-                <>
-                    <Header text='Author: Rojhat' />
-                    <BottomTabBar {...props} />
-                </>
-            )}
-        >
+            }}>
             <Tab.Screen
                 name="Rules"
                 component={Rules}

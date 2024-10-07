@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { SCOREBOARD_KEY } from "../utilities/constants";
 import Button from "./Button";
 import { useIsFocused } from '@react-navigation/native';
-
+import Header from "./Header";
 const formatDate = (date) => {
     const tempDate = new Date(date)
     const day = String(tempDate.getDate()).padStart(2, '0');
@@ -39,28 +39,31 @@ const Scoreboard = ({ route }) => {
         }
     }
     return (
-        <View style={styles.container}>
-            <AntDesign style={styles.icon} name="dashboard" size={100} color="#3293a8" />
-            <Text style={styles.header}>Top Seven</Text>
-            {scoreboard.length === 0 ?
-                <Text style={{ fontSize: 24, fontWeight: 400 }}>Scoreboard is empty</Text> :
-                <FlatList
-                    data={scoreboard}
-                    style={{ width: '100%', marginTop: 24 }}
-                    keyExtractor={item => item.id}
-                    contentContainerStyle={{ gap: 16, }}
-                    renderItem={({ item, index }) => (
-                        <View style={styles.scoreContainer}>
-                            <Text style={styles.scoreText}>{index + 1}.   {name}</Text>
-                            <Text style={styles.scoreText}>{formatDate(item.date)}</Text>
-                            <Text style={[styles.scoreText, { fontWeight: 700 }]}>{item.points}</Text>
-                        </View>
-                    )}
-                />}
-            {scoreboard.length !== 0 && <View style={{ marginTop: 30 }}>
-                <Button title='Clear scoreboard' color='red' onPress={clearScoreboard} />
-            </View>}
-        </View>
+        <>
+            <View style={styles.container}>
+                <AntDesign style={styles.icon} name="dashboard" size={100} color="#3293a8" />
+                <Text style={styles.header}>Top Seven</Text>
+                {scoreboard.length === 0 ?
+                    <Text style={{ fontSize: 24, fontWeight: 400 }}>Scoreboard is empty</Text> :
+                    <FlatList
+                        data={scoreboard}
+                        style={{ width: '100%', marginTop: 24 }}
+                        keyExtractor={item => item.id}
+                        contentContainerStyle={{ gap: 16, }}
+                        renderItem={({ item, index }) => (
+                            <View style={styles.scoreContainer}>
+                                <Text style={styles.scoreText}>{index + 1}.   {item.name}</Text>
+                                <Text style={styles.scoreText}>{formatDate(item.date)}</Text>
+                                <Text style={[styles.scoreText, { fontWeight: 700 }]}>{item.points}</Text>
+                            </View>
+                        )}
+                    />}
+                {scoreboard.length !== 0 && <View style={{ marginTop: 30 }}>
+                    <Button title='Clear scoreboard' color='red' onPress={clearScoreboard} />
+                </View>}
+            </View>
+            <Header text='Author: Rojhat' style={{ marginTop: 8 }} />
+        </>
     )
 }
 
@@ -75,7 +78,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         paddingLeft: 8,
         paddingRight: 8,
-        paddingBottom: 300,
     },
     icon: {
         marginTop: 32,

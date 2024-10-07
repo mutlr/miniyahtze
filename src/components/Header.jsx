@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View } from "react-native"
-const Header = ({ text }) => {
+const Header = ({ text, style }) => {
     return (
-        <View style={styles.header}>
+        <View style={[styles.header, style]}>
             <Text style={styles.text}>{text}</Text>
         </View>
     )
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 70,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     text: {
         fontSize: 24,

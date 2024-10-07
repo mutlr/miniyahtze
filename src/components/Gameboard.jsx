@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { NBR_OF_DICES, NBR_OF_THROWS, BONUS_POINTS, SCOREBOARD_KEY } from "../utilities/constants";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { randomUUID } from "expo-crypto";
+import Header from "./Header";
 const Dice = ({ number, size = 40, onPress, active }) => {
     return (
         <Pressable
@@ -116,9 +117,10 @@ const Gameboard = ({ route }) => {
     const saveGame = async () => {
         try {
             const result = {
+                name,
                 points: totalPoints(),
                 date: new Date(),
-                id: randomUUID()
+                id: randomUUID(),
             }
             const storedGames = await AsyncStorage.getItem(SCOREBOARD_KEY)
             const parsedGames = storedGames ? JSON.parse(storedGames) : []
@@ -154,15 +156,16 @@ const Gameboard = ({ route }) => {
                         keyExtractor={(item, index) => index}
                     />}
                 <View style={{ alignItems: 'center', gap: 16, }}>
-
                     <Text>{error || ''}</Text>
-                    <Text style={styles.regularText}>Throws left: {throws}</Text>
                     {gameOver ? <Button title='New Game' onPress={initializeNewGame} /> :
-                        <Button title='Throw dices' onPress={throwDices} />}
-                    <Text style={styles.bigText}>Total: {points}</Text>
-                    {points < 63 ?
-                        <Text style={styles.regularText}>You are {63 - points} points away from bonus!</Text> :
-                        <Text>Congrats! Bonus points ({BONUS_POINTS}) added!</Text>}
+                        <>
+                            <Text style={styles.regularText}>Throws left: {throws}</Text>
+                            <Button title='Throw dices' onPress={throwDices} />
+                            <Text style={styles.bigText}>Total: {points}</Text>
+                            {points < 63 ?
+                                <Text style={styles.regularText}>You are {63 - points} points away from bonus!</Text> :
+                                <Text>Congrats! Bonus points ({BONUS_POINTS}) added!</Text>}
+                        </>}
                 </View>
 
             </View>
@@ -186,6 +189,7 @@ const Gameboard = ({ route }) => {
                     <Text style={[styles.regularText, styles.player, { alignSelf: 'center' }]}>Player: {name}</Text>
                 </View>
             </View>
+            <Header text='Author: Rojhat' style={{ marginTop: 8 }} />
         </View>
     )
 }
